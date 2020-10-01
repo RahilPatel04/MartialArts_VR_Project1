@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Textures - A-Frame School</title>
+    <meta name="description" content="Textures - A-Frame School">
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
+    <script>
+      <!-- Register an AFrame component to scene -->
+      AFRAME.registerComponent('scene', {
+        init: function (){
+          var lightSwitch = document.querySelector('#lightSwitchId');
+          var MainDoorVar = document.querySelector('#MainDoorId');
+          var MainDoorOpen = false;
+          var ClosetDoorVar = document.querySelector('#ClosetDoorId');
+          var ClosetDoorOpen = false;
+          
+          var covidButton = document.querySelector('#CovidButtonId');
+          var covidMode = 1;
+          var fighter1 = document.querySelector('#Fighter1');
+          var fighter2 = document.querySelector('#Fighter2');
+          var fighter3 = document.querySelector('#Fighter3');
+          var fighter4 = document.querySelector('#Fighter4');
+          var chair1 = document.querySelector('#Chair1');
+          var chair2 = document.querySelector('#Chair2');
+          var chair3 = document.querySelector('#Chair3');
+          var chair4 = document.querySelector('#Chair4');
+          var chair5 = document.querySelector('#Chair5');
+          var dummy1 = document.querySelector('#Dummy1');
+          var dummy2 = document.querySelector('#Dummy2');
+          var dummy3 = document.querySelector('#Dummy3');
+          var dummy4 = document.querySelector('#Dummy4');
+          <!-- Shut off the dummys initially -->
+          dummy1.setAttribute('visible', !dummy1.getAttribute('visible'));
+          dummy2.setAttribute('visible', !dummy2.getAttribute('visible'));
+          dummy3.setAttribute('visible', !dummy3.getAttribute('visible'));
+          dummy4.setAttribute('visible', !dummy4.getAttribute('visible'));
+          
+          <!-- We add an event for when click happens on lightSwitch id-->
+          lightSwitch.addEventListener('click', function (evt){
+            var light_1_Actual = document.querySelector('#MainLight_1_Actual');
+            var light_1_Show = document.querySelector('#MainLight_1_Show');
+            var light_2_Actual = document.querySelector('#MainLight_2_Actual');
+            var light_2_Show = document.querySelector('#MainLight_2_Show');
+            
+            <!-- Change the visible light state to what its not. This acts like a toggle of the lights -->
+            light_1_Actual.setAttribute('visible', !light_1_Actual.getAttribute('visible'));
+            light_1_Show.setAttribute('visible', !light_1_Show.getAttribute('visible'));
+            light_2_Actual.setAttribute('visible', !light_2_Actual.getAttribute('visible'));
+            light_2_Show.setAttribute('visible', !light_2_Show.getAttribute('visible'));            
+          })
+          
+          MainDoorVar.addEventListener('click', function (evt){
+            if(MainDoorOpen == false){
+              MainDoorVar.setAttribute('position', {x: 22.115, y: 4.511, z: 39.89});
+              MainDoorVar.setAttribute('rotation', {x: 0, y: -90, z: 0});
+              MainDoorOpen = true;
+            }
+            else{
+              MainDoorVar.setAttribute('position', {x: 24.325, y: 4.511, z: 37.874});
+              MainDoorVar.setAttribute('rotation', {x: 0, y: 0, z: 0});
+              MainDoorOpen = false;
+            }
+          })
+          
+          ClosetDoorVar.addEventListener('click', function (evt){
+            if(ClosetDoorOpen == false){
+              ClosetDoorVar.setAttribute('position', {x: 54.21, y: 4.511, z: 1.452});
+              ClosetDoorVar.setAttribute('rotation', {x: 0, y: 180, z: 0}); 
+              ClosetDoorOpen = true;
+            }
+            else{
+              ClosetDoorVar.setAttribute('position', {x: 56.526, y: 4.511, z: 3.662});
+              ClosetDoorVar.setAttribute('rotation', {x: 0, y: -90, z: 0}); 
+              ClosetDoorOpen = false;
+            }
+          })
+          
+          CovidButtonId.addEventListener('click', function (evt){
+            <!-- covidMode will toggle off between our scenes. 1 is normal, 2 is during covid, and 3 is after lockdowns(June, July, August)
+            if(covidMode == 1){
+              <!-- Make fighters invisible -->
+              fighter1.setAttribute('visible', !fighter1.getAttribute('visible'));
+              fighter2.setAttribute('visible', !fighter2.getAttribute('visible'));
+              fighter3.setAttribute('visible', !fighter3.getAttribute('visible'));
+              fighter4.setAttribute('visible', !fighter4.getAttribute('visible'));
+              
+              <!-- Put chairs in closet -->
+              chair1.setAttribute('position', {x: 60.171, y: 0, z: 2.564});
+              chair2.setAttribute('position', {x: 60.171, y: 0.4, z: 2.564});
+              chair3.setAttribute('position', {x: 60.171, y: 0.8, z: 2.564});
+              chair4.setAttribute('position', {x: 60.171, y: 1.2, z: 2.564});
+              chair5.setAttribute('position', {x: 60.171, y: 1.6, z: 2.564});
+              
+              covidMode = 2;
+            }
+            else if(covidMode == 2){
+              <!-- Make fighter 3 and 4 active -->
+              fighter3.setAttribute('visible', !fighter3.getAttribute('visible'));
+              fighter4.setAttribute('visible', !fighter4.getAttribute('visible'));
+              
+              <!-- Turn on the dummys -->
+              dummy1.setAttribute('visible', !dummy1.getAttribute('visible'));
+              dummy2.setAttribute('visible', !dummy2.getAttribute('visible'));
+              dummy3.setAttribute('visible', !dummy3.getAttribute('visible'));
+              dummy4.setAttribute('visible', !dummy4.getAttribute('visible'));
+              
+              covidMode = 3;
+            }
+            else if(covidMode == 3){
+              <!-- Go back to normal -->
+              fighter1.setAttribute('visible', !fighter1.getAttribute('visible'));
+              fighter2.setAttribute('visible', !fighter2.getAttribute('visible'));
+              
+              <!-- Put Chairs out -->
+              chair1.setAttribute('position', {x: 51.707, y: 0, z: -46.716});
+              chair2.setAttribute('position', {x: 51.707, y: 0, z: -41.716});
+              chair3.setAttribute('position', {x: 51.707, y: 0, z: -36.416});
+              chair4.setAttribute('position', {x: 51.707, y: 0, z: -31.716});
+              chair5.setAttribute('position', {x: 51.707, y: 0, z: -26.716});
+              
+              <!-- Turn off the dummys -->
+              dummy1.setAttribute('visible', !dummy1.getAttribute('visible'));
+              dummy2.setAttribute('visible', !dummy2.getAttribute('visible'));
+              dummy3.setAttribute('visible', !dummy3.getAttribute('visible'));
+              dummy4.setAttribute('visible', !dummy4.getAttribute('visible'));
+              
+              covidMode = 1;
+            }
+          })
+        }
+      });
+      <!-- register the teleport element with our teleport spheres -->
+      AFRAME.registerComponent('teleport', {
+        schema:{
+          offset:{type:"number", default:0}
+        },
+        init: function(){  
+            var offset = this.data;
+            this.el.addEventListener('click', function(evt){
+            var camera = document.querySelector('#camera');
+            camera.setAttribute('position', {x:this.getAttribute('position').x, y:this.getAttribute('position').y+offset, z:this.getAttribute('position').z});
+          });
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <a-scene scene>
+      <a-assets>
+          <img id="skyTexture" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+          <img id="groundTexture" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fconcrete_floor_painted_disp_4k.jpg?v=1600920164936">
+          <img id="bottomWallTexture" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwhite_plaster_03_diff_4k.jpg?v=1600811220244">
+          <img id="topWallTexture" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955349.jpg?v=1601175526310">
+          <img id="topWallTexture_2" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955347-bjj-wallpapers.jpg?v=1601175855606">
+          <img id="topWallTexture_3" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955345-bjj-wallpapers.jpg?v=1601176197209">
+          <img id="topWallTexture_4" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955388-bjj-wallpapers.jpg?v=1601176388364">
+          <img id="topWallTexture_5" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955433-bjj-wallpapers.jpg?v=1601176606742">
+          <img id="middleWallTexture" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwhite_plaster_03_disp_4k.jpg?v=1600811210546">
+          
+          <a-asset-item id="roof" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Froof.glb?v=1601146370030"></a-asset-item>
+          <a-asset-item id="Light" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FLights.glb?v=1601163699154"></a-asset-item>
+          <a-asset-item id="Desk" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fdesk.glb?v=1601168018519"></a-asset-item>
+          <a-asset-item id="WaterFountain" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FwaterFountain.glb?v=1601177705454"></a-asset-item>
+          <a-asset-item id="Computer" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FComputer.glb?v=1601179842172"></a-asset-item>
+          <a-asset-item id="Mop" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FMop.glb?v=1601181410504"></a-asset-item>
+          <a-asset-item id="LightSwitchModel" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FlightSwitch.glb?v=1601338209024"></a-asset-item>
+          <a-asset-item id="Fighter" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FcharacterModel.glb?v=1601355048825"></a-asset-item>
+          <a-asset-item id="Fighter1_Scene1" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FFighter1_Scene1.glb?v=1601431143855"></a-asset-item>
+          <a-asset-item id="FighterMounted_Scene2" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FMountedFighter_Scene2.glb?v=1601435684714"></a-asset-item>
+          <a-asset-item id="FighterOnGround_Scene2" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FOnGroundFighter_Scene2.glb?v=1601435688882"></a-asset-item>
+        
+          <a-asset-item id="MainDoorFrame" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FDoorFrame.glb?v=1601407671115"></a-asset-item>
+          <a-asset-item id="MainDoor" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FMainDoor.glb?v=1601409006089"></a-asset-item>
+          <a-asset-item id="Lockers" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FSmallLockers.glb?v=1601415393177"></a-asset-item>
+          <a-asset-item id="Benches" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FFinalBenches.glb?v=1601417852352"></a-asset-item>
+          <a-asset-item id="Chairs" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FChairs.glb?v=1601438747548"></a-asset-item>
+        
+          <a-asset-item id="CovidButton" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FCovidButton.glb?v=1601440197547"></a-asset-item>
+          <a-asset-item id="Dummy" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fdummy.glb?v=1601445179742"></a-asset-item>
+          <a-asset-item id="AnimatedTrainingDummy" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FAnimatedTrainingDummy.glb?v=1601446696051"></a-asset-item>
+          <a-asset-item id="TechPunchingBag" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FTechPunchingBag.glb?v=1601448113790"></a-asset-item>
+          <a-asset-item id="PunchingBagStand" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FPunching_BagStand.glb?v=1601509133766"></a-asset-item>
+          <a-asset-item id="PunchingBag" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FpunchingBag.glb?v=1601510435904"></a-asset-item>
+               
+          <a-asset-item id="ShoeRack" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FShoeRack.glb?v=1601448652848"></a-asset-item>
+          <a-asset-item id="Shoes" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FShoes.glb?v=1601512753089"></a-asset-item>
+          <a-asset-item id="Shoes2" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FShoes2.glb?v=1601513713535"></a-asset-item>
+          <a-asset-item id="Shoes3" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FShoes3.glb?v=1601513399917"></a-asset-item>
+        
+      </a-assets>     
+      <a-camera id = "camera" position="26.906 5 -2.408" wasd-controls="acceleration: 500" rotation="" look-controls="" aframe-injected="" data-aframe-inspector-original-camera="">
+        <a-cursor color="#ffba70" position="0 0 -1"></a-cursor>
+      </a-camera>
+      <a-sky src="#skyTexture"></a-sky>
+ 
+      <a-plane src="#groundTexture" rotation="-90 0 0" height="200" width="200"></a-plane>
+
+      <a-light type="ambient" color="#445451"></a-light>
+      <a-light id="MainLight_1_Actual" type="point" intensity=".5" position="5.645 14 11.880"></a-light>
+      <a-light id="MainLight_1_Show" type="point" intensity="1" position="5.645  13.88062 11.880" light="intensity: 20; distance: 4.3"></a-light>
+      
+      <a-light id="MainLight_2_Actual" type="point" intensity=".5" position="42.481 14 -18.443"></a-light>
+      <a-light id="MainLight_2_Show" type="point" intensity="1" position="42.481  13.88062 -18.443" light="intensity: 20; distance: 4.3"></a-light>
+
+      
+      <!-- walls -->
+          <!-- Right Wall (Shoes) -->
+      <a-box src="#bottomWallTexture" position="30 1.115 26" rotation="0 90 0" height="8" width="24" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="30 2.35 26" rotation="0 90 0" height="8" width="24" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture_4" position="30 9.97 26" rotation="0 90 0" height="15" width="24" ></a-box>
+          <!-- Left Wall (BJJ)-->
+      <a-box src="#bottomWallTexture" position="-16.4 1.115 10.75" rotation="0 90 0" height="8" width="54.4" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="-16.4 2.35 10.75" rotation="0 90 0" height="8" width="54.4" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture" position="-16.4 9.97 10.75" rotation="0 90 0" height="15" width="54.4" ></a-box>
+          <!-- Back Wall (BJJ) -->
+      <a-box src="#bottomWallTexture" position="0 1.115 -16.4" rotation="0 180 0" height="8" width="33.75" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="0 2.35 -16.4" rotation="0 180 0" height="8" width="33.75" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture" position="0 9.97  -16.4" rotation="0 180 0" height="15" width="33.75" ></a-box>
+          <!-- Front Wall (Boxing) -->
+      <a-box src="#bottomWallTexture" position="1.124 1.115 38" rotation="0 180 0" height="8" width="35.33" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="1.124 2.35 38" rotation="0 180 0" height="8" width="35.33" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture" position="6.8 14.07  38" rotation="0 180 0" height="6.8" width="45.8" ></a-box>
+          <!-- Help Desk Wall -->
+      <a-box src="#bottomWallTexture" position="34.08 1.115 11.936" rotation="0 30 0" height="8" width="10" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="34.08 2.35 11.936" rotation="0 30 0" height="8" width="10" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture_3" position="34.08 9.97  11.936" rotation="0 30 0" height="15" width="10" ></a-box> 
+          <!-- Right small locker wall -->
+      <a-box src="#bottomWallTexture" position="39.658 1.115 9.5" rotation="0 0 0" height="8" width="3" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="39.658 2.35 9.5" rotation="0 0 0" height="8" width="3" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture" position="39.658 9.97  9.5" rotation="0 0 0" height="15" width="3" ></a-box> 
+          <!-- Left small locker wall -->
+      <a-box src="#bottomWallTexture" position="54.5 1.115 9.5" rotation="0 0 0" height="8" width="17" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="54.5 2.35 9.5" rotation="0 0 0" height="8" width="17" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture" position="54.5 9.97 9.5" rotation="0 0 0" height="15" width="17" ></a-box> 
+          <!-- Water fountain -->
+      <a-box src="#bottomWallTexture" position="20.080 1.115 -18.325" rotation="0 30 0" height="8" width="8" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="20.080 2.35 -18.325" rotation="0 30 0" height="8" width="8" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture" position="20.080 9.97 -18.325" rotation="0 30 0" height="15" width="8"> </a-box> 
+          <!-- Left Second BJJ Mat Wall -->
+      <a-box src="#bottomWallTexture" position="23.29 1.115 -36.77" rotation="0 90 0" height="8" width="33.75" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="23.29 2.35 -36.77" rotation="0 90 0" height="8" width="33.75" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture_2" position="23.29 9.97 -36.77" rotation="0 90 0" height="15" width="33.75"></a-box>
+          <!-- Back second BJJ Mat Wall -->
+      <a-box src="#bottomWallTexture" position="40.165 1.115 -53.15" rotation="0 180 0" height="8" width="33.75" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="40.165 2.35 -53.15" rotation="0 180 0" height="8" width="33.75" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture_2" position="40.165 9.97  -53.15" rotation="0 180 0" height="15" width="33.75" ></a-box>
+          <!-- Right Wall by red mats -->
+      <a-box src="#bottomWallTexture" position="57.16 1.115 -26.14" rotation="0 90 0" height="8" width="54.66" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="57.16 2.35 -26.14" rotation="0 90 0" height="8" width="54.66" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture_2" position="57.16 9.97  -26.14" rotation="0 90 0" height="15" width="54.66" ></a-box>
+          <!-- Right closet wall -->
+      <a-box src="#bottomWallTexture" position="57.16 1.115 17.693" rotation="0 90 0" height="8" width="23.19" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="57.16 2.35 17.693" rotation="0 90 0" height="8" width="23.19" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture" position="57.16 9.97  17.693" rotation="0 90 0" height="15" width="23.19" ></a-box>
+          <!-- Back Locker Wall -->
+      <a-box src="#bottomWallTexture" position="43.58 1.115 28.952" rotation="0 180 0" height="8" width="27" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="43.58 2.35 28.952" rotation="0 180 0" height="8" width="27" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture_3" position="43.58 9.97 28.952" rotation="0 180 0" height="15" width="27" ></a-box>
+          <!-- Left inside closet wall -->
+      <a-box src="#bottomWallTexture" position="60.1 1.115 -1.951" rotation="0 180 0" height="8" width="6.5" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="60.1 2.35 -1.951" rotation="0 180 0" height="8" width="6.5" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture" position="60.1 9.97  -1.951" rotation="0 180 0" height="15" width="6.5" ></a-box>
+          <!-- Back inside closet wall -->
+      <a-box src="#bottomWallTexture" position="63.35 1.115 3.73" rotation="0 90 0" height="8" width="11.970" geometry="height:2.23"></a-box>
+      <a-box src="#middleWallTexture" position="63.35 2.35 3.73" rotation="0 90 0" height="8" width="11.970" geometry="height:0.2400000000000001"></a-box>
+      <a-box src="#topWallTexture_5" position="63.35 9.97  3.73" rotation="0 90 0" height="15" width="11.970" ></a-box>  
+          <!-- Above Closet Wall -->
+      <a-box src="#topWallTexture_2" position="57.16 13.339 3.684" rotation="0 90 0" height="8.440" width="5.048" ></a-box>
+          <!-- Above Locker Enterance -->
+      <a-box src="#topWallTexture" position="43.579 13.339 9.5" rotation="0 0 0" height="8.440" width="4.842" ></a-box>
+      
+      <!-- Fighting Matt; in horizontal pattern -->
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fbjj_slogan.jpg?v=1600923254336" material="" geometry="height: 0.4; depth: 6; width: 6" position="0 0.2 0"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="6.25 0.2 0"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-6.25 0.2 0"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-12.5 0.2 0"></a-box>
+      
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="0 0.2 6.25"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="6.25 0.2 6.25"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-6.25 0.2 6.25"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-12.5 0.2 6.25"></a-box>
+      
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="0 0.2 -6.25"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="6.25 0.2 -6.25"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fbjj_slogan.jpg?v=1600923254336" material="" geometry="height: 0.4; depth: 6; width: 6" position="-6.25 0.2 -6.25"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-12.5 0.2 -6.25"></a-box>
+      
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="0 0.2 -12.5"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="6.25 0.2 -12.5"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-6.25 0.2 -12.5"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-12.5 0.2 -12.5"></a-box>       
+      
+          <!-- Between Mats -->
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="-3.125 0.1 -3.125"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position=" 3.125 0.1 -3.125"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position=" -9.375 0.1 -3.125"></a-box>
+      
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="-3.125 0.1 3.125" rotation="0 90 0"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="-3.125 0.1 -3.125" rotation="0 90 0"></a-box> 
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="-3.125 0.1 -9.375" rotation="0 90 0"></a-box> 
+          <!-- Mats on Walls -->
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 24.75; width: 4" position="-15.625 2 -3.125" rotation="0 0 90"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 24.75; width: 4" position="-3.125 2 -15.625" rotation="0 90 90"></a-box>    
+      
+      <!-- Second Fighting Matt -->
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -49.45"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -49.45"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -49.45"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -49.45"></a-box>
+
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -43.2"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FRedTechLogo.jpg?v=1601080959423" material="" rotation = "0 180 0" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -43.2"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FRedTechLogo.jpg?v=1601080959423" material="" rotation = "0 180 0" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -43.2"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -43.2"></a-box>
+      
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -36.95"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FRedTechLogo.jpg?v=1601080959423" material="" rotation = "0 270 0" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -36.95"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FRedTechLogo.jpg?v=1601080959423" material="" rotation = "0 90 0" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -36.95"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -36.95"></a-box>    
+ 
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -30.7"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FRedTechLogo.jpg?v=1601080959423" material="" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -30.7"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FRedTechLogo.jpg?v=1601080959423" material="" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -30.7"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -30.7"></a-box>   
+      
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -24.45"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -24.45"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -24.45"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -24.45"></a-box>   
+      
+          <!-- Between Mats -->
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 31; width: 0.25" position="30.115 0.1 -36.95"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 31; width: 0.25" position="36.365 0.1 -36.95"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 31; width: 0.25" position="42.615 0.1 -36.95"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="36.365 0.1 -33.825" rotation="0 90 0"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="36.365 0.1 -27.575" rotation="0 90 0"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="36.365 0.1 -40.075" rotation="0 90 0"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="36.365 0.1 -46.325" rotation="0 90 0"></a-box>
+
+          <!-- Mats on Wall -->
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 31; width: 4" position="23.865 2 -36.95" rotation="0 0 90"></a-box>
+      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 24.75; width: 4" position="36.365 2 -52.575" rotation="0 90 90"></a-box>
+      
+      <!-- Roof Models -->
+      <a-entity gltf-model="#roof" scale=".02 .01 .15" position="58.719 14.985 -14.688"></a-entity>
+      <a-entity gltf-model="#roof" scale=".02 .01 .15" position="48.045 14.985 -14.688"></a-entity>
+      <a-entity gltf-model="#roof" scale=".02 .01 .15" position="37.371 14.985 -14.688"></a-entity>
+      <a-entity gltf-model="#roof" scale=".02 .01 .165" position="26.697 14.985 -11.449"></a-entity>
+      <a-entity gltf-model="#roof" scale=".02 .01 .1" position="16.023 14.985 8.14"></a-entity>
+      <a-entity gltf-model="#roof" scale=".02 .01 .1" position="5.349 14.985 8.14"></a-entity>
+      <a-entity gltf-model="#roof" scale=".02 .01 .1" position="-5.325 14.985 8.14"></a-entity>
+      <a-entity gltf-model="#roof" scale=".02 .01 .1" position="-15.999 14.985 8.14"></a-entity>
+      
+      <!-- Roof Lights -->
+      <a-entity gltf-model="#Light" scale="2.3 2.3 2.3" position="5.645 17.183 11.880" rotation="0 0 180"></a-entity>
+      <a-entity gltf-model="#Light" scale="2.3 2.3 2.3" position="42.481 17.183 -18.443" rotation="0 0 180"></a-entity>
+      
+      <!-- Desk -->
+      <a-entity gltf-model="#Desk" scale = "5 4.5 5" position="33.198 3.412 5.443" rotation="0 30 0"></a-entity>
+          <!-- Computer -->
+      <a-entity gltf-model="#Computer" scale = ".005 .005 .005" position="34.733 3.548 8.18" rotation="0 300 0"></a-entity>
+          <!-- Covid Button -->
+      <a-entity id = "CovidButtonId" gltf-model="#CovidButton" scale = ".5 .5 .5" position="33.213 3.716 5.592" rotation="0 300 0"></a-entity>
+      
+      <!-- Water Fountain -->
+      <a-entity gltf-model="#WaterFountain" scale = "1 1 1" position="19.195 1.359 -16.59" rotation="0 30 0"></a-entity>
+      <a-entity gltf-model="#WaterFountain" scale = "1 1 1" position="22.089 1.359 -18.3" rotation="0 30 0"></a-entity>
+      
+      <!-- Closet Models -->
+      <a-entity gltf-model="#Mop" scale = ".5 .5 .5" position="60.041 -.205 7.587" rotation="0 180 0"></a-entity>
+      
+      <!-- Light Switch Models -->
+      <a-entity id="lightSwitchId" gltf-model="#LightSwitchModel" scale = "1 1 1" color = "red" position="31.242 4.207 12.292" rotation="0 300 0"></a-entity>
+      <!-- Fighters -->
+      <a-entity id = "Fighter1" gltf-model="#Fighter1_Scene1" scale = ".65 .65 .65" position="-3.25 -0.268 -8.13" rotation="0 180 0" animation-mixer="clip: ArmatureAction;"></a-entity>
+      <a-entity id = "Fighter2" gltf-model="#Fighter1_Scene1" scale = ".65 .65 .65" position="-3.25 -0.268 -1.053" rotation="0 0 0" animation-mixer="clip: ArmatureAction;"></a-entity>
+      <a-entity id = "Fighter3" gltf-model="#FighterMounted_Scene2" scale = ".65 .65 .65" position="33.24 -0.268 -36.95" rotation="0 0 0" animation-mixer="clip: ArmatureAction;"></a-entity>
+      <a-entity id = "Fighter4" gltf-model="#FighterOnGround_Scene2" scale = ".65 .65 .65" position="33.24 -0.268 -36.95" rotation="0 0 0" animation-mixer="clip: Armature.001Action;"></a-entity>      
+      
+      <!-- Main Door Models-->
+      <a-entity gltf-model="#MainDoorFrame" scale = ".03 .028 .03" position="24.325 5.293 37.874" rotation="0 0 0"></a-entity>
+      <a-entity id = "MainDoorId" gltf-model="#MainDoor" scale = ".03 .028 .03" position="24.325 4.511 37.874" rotation="0 0 0"></a-entity>
+      
+      <!-- Closet Door -->
+      <a-entity id = "ClosetDoorId" gltf-model="#MainDoor" scale = ".03 .028 .03" position="56.526 4.511 3.662" rotation="0 -90 0"></a-entity>
+      
+      <!-- Locker Room-->
+      <a-entity gltf-model="#Lockers" scale = "11.5 11.5 11.5" position="56.088 2.871 19.485" rotation="0 270 0"></a-entity>
+      <a-entity teleport="4.5" id = "BenchesId" gltf-model="#Benches" scale = ".00004 .00004 .00004" position="47.184 0 25.889" rotation="0 10 0"></a-entity>
+      
+      <!-- Chairs -->
+      <a-entity teleport="4" id = "Chair1" gltf-model="#Chairs" scale = ".013 .013 .013" position="51.707 0 -46.716"></a-entity>
+      <a-entity teleport="4" id = "Chair2" gltf-model="#Chairs" scale = ".013 .013 .013" position="51.707 0 -41.716"></a-entity>
+      <a-entity teleport="4" id = "Chair3" gltf-model="#Chairs" scale = ".013 .013 .013" position="51.707 0 -36.716"></a-entity>
+      <a-entity teleport="4" id = "Chair4" gltf-model="#Chairs" scale = ".013 .013 .013" position="51.707 0 -31.716"></a-entity>
+      <a-entity teleport="4" id = "Chair5" gltf-model="#Chairs" scale = ".013 .013 .013" position="51.707 0 -26.716"></a-entity>     
+      
+      <!-- Training Dummys -->
+      <a-entity id = "Dummy1" gltf-model="#Dummy" scale = ".5 .5 .5" position="2.681 .905 2.281" rotation="0 90 0"></a-entity>
+      <a-entity id = "Dummy2" gltf-model="#Dummy" scale = ".5 .5 .5" position="-8.586 .905 2.281" rotation="0 90 0"></a-entity>
+      <a-entity id = "Dummy3" gltf-model="#Dummy" scale = ".5 .5 .5" position="2.681 .905 -9.68" rotation="0 90 0"></a-entity>
+      <a-entity id = "Dummy4" gltf-model="#Dummy" scale = ".5 .5 .5" position="-8.586 .905 -9.68" rotation="0 90 0"></a-entity>
+      
+      <!-- Boxing Stuff -->
+      <a-entity gltf-model="#AnimatedTrainingDummy" scale = ".6 .6 .6" position="-11.804 0 20.003" rotation="0 135 0" animation-mixer="clip: Damaged_Big;"></a-entity>
+      <a-entity gltf-model="#TechPunchingBag" scale = "1 1 1" position="-11.764 0 34.45" rotation="0 180 0"></a-entity>
+      <a-entity gltf-model="#TechPunchingBag" scale = "1 1 1" position="-13.46251 0 29.69528" rotation="0 135 0"></a-entity>
+      <a-entity gltf-model="#PunchingBagStand" scale = ".4 .4 .4" position="14.042 -1.268 29.063" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="6.054 1.831 29.063" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="10.072 1.831 29.063" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="2.08 1.831 29.063" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="-1.965 1.831 29.063" rotation="0 90 0"></a-entity>
+      
+      <!-- Shoe Rack -->
+      <a-entity gltf-model="#ShoeRack" scale = "1.5 .75 1" position="33.667 0 15.751" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#Shoes" scale = ".07 .07 .07" position="32.419 2.349 24.256" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#Shoes2" scale = ".07 .07 .07" position="32.419 2.349 21.48" rotation="0 0 0"></a-entity>
+      <a-entity gltf-model="#Shoes3" scale = ".07 .07 .07" position="32.419 2.349 18.322" rotation="0 0 0"></a-entity>
+      
+      <!-- spheres that will help with teleporting around -->
+      <a-sphere teleport position="26.906 5 -2.408" radius=".25" color="#EF2D5E"></a-sphere>
+      <a-sphere teleport position="43.579 5 9.5" radius=".25" color="#EF2D5E"></a-sphere>
+      <a-sphere teleport position="1.028 5 20.2" radius=".25" color="#EF2D5E"></a-sphere>
+    
+  </a-scene>
+ </body>
+</html>s
