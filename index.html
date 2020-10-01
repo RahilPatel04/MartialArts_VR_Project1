@@ -21,6 +21,8 @@
           var fighter2 = document.querySelector('#Fighter2');
           var fighter3 = document.querySelector('#Fighter3');
           var fighter4 = document.querySelector('#Fighter4');
+          var fighter1_leave = document.querySelector('#Fighter1_Leave');
+          var fighter2_leave = document.querySelector('#Fighter2_Leave');
           var chair1 = document.querySelector('#Chair1');
           var chair2 = document.querySelector('#Chair2');
           var chair3 = document.querySelector('#Chair3');
@@ -30,11 +32,15 @@
           var dummy2 = document.querySelector('#Dummy2');
           var dummy3 = document.querySelector('#Dummy3');
           var dummy4 = document.querySelector('#Dummy4');
+          
           <!-- Shut off the dummys initially -->
           dummy1.setAttribute('visible', !dummy1.getAttribute('visible'));
           dummy2.setAttribute('visible', !dummy2.getAttribute('visible'));
           dummy3.setAttribute('visible', !dummy3.getAttribute('visible'));
           dummy4.setAttribute('visible', !dummy4.getAttribute('visible'));
+          <!-- Shut off the fighters leaving animation -->
+          fighter1_leave.setAttribute('visible', !fighter1_leave.getAttribute('visible'));
+          fighter2_leave.setAttribute('visible', !fighter2_leave.getAttribute('visible'));
           
           <!-- We add an event for when click happens on lightSwitch id-->
           lightSwitch.addEventListener('click', function (evt){
@@ -84,6 +90,9 @@
               fighter2.setAttribute('visible', !fighter2.getAttribute('visible'));
               fighter3.setAttribute('visible', !fighter3.getAttribute('visible'));
               fighter4.setAttribute('visible', !fighter4.getAttribute('visible'));
+              <!-- Make the two fighters leaving animation visible -->
+              fighter1_leave.setAttribute('visible', !fighter1_leave.getAttribute('visible'));
+              fighter2_leave.setAttribute('visible', !fighter2_leave.getAttribute('visible'));
               
               <!-- Put chairs in closet -->
               chair1.setAttribute('position', {x: 60.171, y: 0, z: 2.564});
@@ -104,6 +113,10 @@
               dummy2.setAttribute('visible', !dummy2.getAttribute('visible'));
               dummy3.setAttribute('visible', !dummy3.getAttribute('visible'));
               dummy4.setAttribute('visible', !dummy4.getAttribute('visible'));
+              
+              <!-- Turn off the fighter leaving animations -->
+              fighter1_leave.setAttribute('visible', !fighter1_leave.getAttribute('visible'));
+              fighter2_leave.setAttribute('visible', !fighter2_leave.getAttribute('visible'));
               
               covidMode = 3;
             }
@@ -165,8 +178,9 @@
           <a-asset-item id="Computer" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FComputer.glb?v=1601179842172"></a-asset-item>
           <a-asset-item id="Mop" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FMop.glb?v=1601181410504"></a-asset-item>
           <a-asset-item id="LightSwitchModel" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FlightSwitch.glb?v=1601338209024"></a-asset-item>
-          <a-asset-item id="Fighter" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FcharacterModel.glb?v=1601355048825"></a-asset-item>
+          
           <a-asset-item id="Fighter1_Scene1" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FFighter1_Scene1.glb?v=1601431143855"></a-asset-item>
+          <a-asset-item id="FightersLeave" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FFighter_1Leaving.glb?v=1601529118536"></a-asset-item>
           <a-asset-item id="FighterMounted_Scene2" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FMountedFighter_Scene2.glb?v=1601435684714"></a-asset-item>
           <a-asset-item id="FighterOnGround_Scene2" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FOnGroundFighter_Scene2.glb?v=1601435688882"></a-asset-item>
         
@@ -187,6 +201,9 @@
           <a-asset-item id="Shoes" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FShoes.glb?v=1601512753089"></a-asset-item>
           <a-asset-item id="Shoes2" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FShoes2.glb?v=1601513713535"></a-asset-item>
           <a-asset-item id="Shoes3" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FShoes3.glb?v=1601513399917"></a-asset-item>
+
+          <audio id="PunchingSound" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fzapsplat_cartoon_punch_005_17903.mp3?v=1601519400506"></audio>
+          <audio id="CovidButtonPressedSound" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fskyclad_sound_emergency_alarm_siren_loop.mp3?v=1601531915393"></audio>
         
       </a-assets>     
       <a-camera id = "camera" position="26.906 5 -2.408" wasd-controls="acceleration: 500" rotation="" look-controls="" aframe-injected="" data-aframe-inspector-original-camera="">
@@ -361,7 +378,7 @@
           <!-- Computer -->
       <a-entity gltf-model="#Computer" scale = ".005 .005 .005" position="34.733 3.548 8.18" rotation="0 300 0"></a-entity>
           <!-- Covid Button -->
-      <a-entity id = "CovidButtonId" gltf-model="#CovidButton" scale = ".5 .5 .5" position="33.213 3.716 5.592" rotation="0 300 0"></a-entity>
+      <a-entity id = "CovidButtonId" gltf-model="#CovidButton" scale = ".5 .5 .5" position="33.213 3.716 5.592" rotation="0 300 0" sound="src: #CovidButtonPressedSound; on: click; volume: .2"></a-entity>
       
       <!-- Water Fountain -->
       <a-entity gltf-model="#WaterFountain" scale = "1 1 1" position="19.195 1.359 -16.59" rotation="0 30 0"></a-entity>
@@ -373,8 +390,10 @@
       <!-- Light Switch Models -->
       <a-entity id="lightSwitchId" gltf-model="#LightSwitchModel" scale = "1 1 1" color = "red" position="31.242 4.207 12.292" rotation="0 300 0"></a-entity>
       <!-- Fighters -->
-      <a-entity id = "Fighter1" gltf-model="#Fighter1_Scene1" scale = ".65 .65 .65" position="-3.25 -0.268 -8.13" rotation="0 180 0" animation-mixer="clip: ArmatureAction;"></a-entity>
+      <a-entity id = "Fighter1" gltf-model="#Fighter1_Scene1" scale = ".65 .65 .65" position="-3.25 -0.268 -8.13" rotation="0 180 0" animation-mixer="clip: ArmatureAction;"></a-entity>      
       <a-entity id = "Fighter2" gltf-model="#Fighter1_Scene1" scale = ".65 .65 .65" position="-3.25 -0.268 -1.053" rotation="0 0 0" animation-mixer="clip: ArmatureAction;"></a-entity>
+      <a-entity id = "Fighter1_Leave" gltf-model="#FightersLeave" scale = ".65 .65 .65" position="-3.25 -0.268 -8.13" rotation="0 0 0" animation-mixer="clip: Leave;"></a-entity>
+      <a-entity id = "Fighter2_Leave" gltf-model="#FightersLeave" scale = ".65 .65 .65" position="-3.25 -0.268 -1.053" rotation="0 0 0" animation-mixer="clip: Leave;"></a-entity>
       <a-entity id = "Fighter3" gltf-model="#FighterMounted_Scene2" scale = ".65 .65 .65" position="33.24 -0.268 -36.95" rotation="0 0 0" animation-mixer="clip: ArmatureAction;"></a-entity>
       <a-entity id = "Fighter4" gltf-model="#FighterOnGround_Scene2" scale = ".65 .65 .65" position="33.24 -0.268 -36.95" rotation="0 0 0" animation-mixer="clip: Armature.001Action;"></a-entity>      
       
@@ -407,10 +426,10 @@
       <a-entity gltf-model="#TechPunchingBag" scale = "1 1 1" position="-11.764 0 34.45" rotation="0 180 0"></a-entity>
       <a-entity gltf-model="#TechPunchingBag" scale = "1 1 1" position="-13.46251 0 29.69528" rotation="0 135 0"></a-entity>
       <a-entity gltf-model="#PunchingBagStand" scale = ".4 .4 .4" position="14.042 -1.268 29.063" rotation="0 90 0"></a-entity>
-      <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="6.054 1.831 29.063" rotation="0 90 0"></a-entity>
-      <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="10.072 1.831 29.063" rotation="0 90 0"></a-entity>
-      <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="2.08 1.831 29.063" rotation="0 90 0"></a-entity>
-      <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="-1.965 1.831 29.063" rotation="0 90 0"></a-entity>
+      <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="6.054 1.831 29.063" rotation="0 90 0" sound="src: #PunchingSound; on: click"></a-entity>
+      <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="10.072 1.831 29.063" rotation="0 90 0" sound="src: #PunchingSound; on: click"></a-entity>
+      <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="2.08 1.831 29.063" rotation="0 90 0" sound="src: #PunchingSound; on: click"></a-entity>
+      <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="-1.965 1.831 29.063" rotation="0 90 0" sound="src: #PunchingSound; on: click"></a-entity>
       
       <!-- Shoe Rack -->
       <a-entity gltf-model="#ShoeRack" scale = "1.5 .75 1" position="33.667 0 15.751" rotation="0 90 0"></a-entity>
