@@ -10,6 +10,11 @@
       AFRAME.registerComponent('scene', {
         init: function (){
           var lightSwitch = document.querySelector('#lightSwitchId');
+          var light_1_Actual = document.querySelector('#MainLight_1_Actual');
+          var light_1_Show = document.querySelector('#MainLight_1_Show');
+          var light_2_Actual = document.querySelector('#MainLight_2_Actual');
+          var light_2_Show = document.querySelector('#MainLight_2_Show');
+          
           var MainDoorVar = document.querySelector('#MainDoorId');
           var MainDoorOpen = false;
           var ClosetDoorVar = document.querySelector('#ClosetDoorId');
@@ -21,8 +26,6 @@
           var fighter2 = document.querySelector('#Fighter2');
           var fighter3 = document.querySelector('#Fighter3');
           var fighter4 = document.querySelector('#Fighter4');
-          var fighter1_leave = document.querySelector('#Fighter1_Leave');
-          var fighter2_leave = document.querySelector('#Fighter2_Leave');
           var chair1 = document.querySelector('#Chair1');
           var chair2 = document.querySelector('#Chair2');
           var chair3 = document.querySelector('#Chair3');
@@ -38,25 +41,18 @@
           dummy2.setAttribute('visible', !dummy2.getAttribute('visible'));
           dummy3.setAttribute('visible', !dummy3.getAttribute('visible'));
           dummy4.setAttribute('visible', !dummy4.getAttribute('visible'));
-          <!-- Shut off the fighters leaving animation -->
-          fighter1_leave.setAttribute('visible', !fighter1_leave.getAttribute('visible'));
-          fighter2_leave.setAttribute('visible', !fighter2_leave.getAttribute('visible'));
           
-          <!-- We add an event for when click happens on lightSwitch id-->
-          lightSwitch.addEventListener('click', function (evt){
-            var light_1_Actual = document.querySelector('#MainLight_1_Actual');
-            var light_1_Show = document.querySelector('#MainLight_1_Show');
-            var light_2_Actual = document.querySelector('#MainLight_2_Actual');
-            var light_2_Show = document.querySelector('#MainLight_2_Show');
-            
+          function toggleLights(){
+            <!-- Toggle lights -->
             <!-- Change the visible light state to what its not. This acts like a toggle of the lights -->
             light_1_Actual.setAttribute('visible', !light_1_Actual.getAttribute('visible'));
             light_1_Show.setAttribute('visible', !light_1_Show.getAttribute('visible'));
             light_2_Actual.setAttribute('visible', !light_2_Actual.getAttribute('visible'));
-            light_2_Show.setAttribute('visible', !light_2_Show.getAttribute('visible'));            
-          })
+            light_2_Show.setAttribute('visible', !light_2_Show.getAttribute('visible'));
+          }
           
-          MainDoorVar.addEventListener('click', function (evt){
+          function toggleMainDoor(){
+            <!-- toggles the main door to open/close -->
             if(MainDoorOpen == false){
               MainDoorVar.setAttribute('position', {x: 22.115, y: 4.511, z: 39.89});
               MainDoorVar.setAttribute('rotation', {x: 0, y: -90, z: 0});
@@ -67,9 +63,10 @@
               MainDoorVar.setAttribute('rotation', {x: 0, y: 0, z: 0});
               MainDoorOpen = false;
             }
-          })
+          }
           
-          ClosetDoorVar.addEventListener('click', function (evt){
+          function toggleClosetDoor(){
+            <!-- toggles the closet door to open/close -->
             if(ClosetDoorOpen == false){
               ClosetDoorVar.setAttribute('position', {x: 54.21, y: 4.511, z: 1.452});
               ClosetDoorVar.setAttribute('rotation', {x: 0, y: 180, z: 0}); 
@@ -80,19 +77,42 @@
               ClosetDoorVar.setAttribute('rotation', {x: 0, y: -90, z: 0}); 
               ClosetDoorOpen = false;
             }
+          }
+          
+          function toggleDummys(){
+              <!-- toggle the dummys to be visible and invisible -->
+              dummy1.setAttribute('visible', !dummy1.getAttribute('visible'));
+              dummy2.setAttribute('visible', !dummy2.getAttribute('visible'));
+              dummy3.setAttribute('visible', !dummy3.getAttribute('visible'));
+              dummy4.setAttribute('visible', !dummy4.getAttribute('visible'));
+          }
+          
+          <!-- We add an event for when click happens on lightSwitch id-->
+          lightSwitch.addEventListener('click', function (evt){            
+            <!-- Toggle lights -->
+            toggleLights();
+          })
+          
+          MainDoorVar.addEventListener('click', function (evt){
+            <!-- Toggle the main door when clicked -->
+            toggleMainDoor()
+          })
+          
+          ClosetDoorVar.addEventListener('click', function (evt){
+            <!-- Toggle the closet door when clicked -->
+            toggleClosetDoor();
           })
           
           CovidButtonId.addEventListener('click', function (evt){
             <!-- covidMode will toggle off between our scenes. 1 is normal, 2 is during covid, and 3 is after lockdowns(June, July, August)
             if(covidMode == 1){
-              <!-- Make fighters invisible -->
-              fighter1.setAttribute('visible', !fighter1.getAttribute('visible'));
-              fighter2.setAttribute('visible', !fighter2.getAttribute('visible'));
+              <!-- Change fighters 1 and 2 animaiton so they leave the building during lockdown phase -->
+              fighter1.setAttribute('rotation', {x: 0, y: 0, z: 0});
+              fighter1.setAttribute('animation-mixer', 'clip: Leave');
+              fighter2.setAttribute('animation-mixer', 'clip: Leave');
+              <!-- Make fighters 3 and 4 invisible -->
               fighter3.setAttribute('visible', !fighter3.getAttribute('visible'));
               fighter4.setAttribute('visible', !fighter4.getAttribute('visible'));
-              <!-- Make the two fighters leaving animation visible -->
-              fighter1_leave.setAttribute('visible', !fighter1_leave.getAttribute('visible'));
-              fighter2_leave.setAttribute('visible', !fighter2_leave.getAttribute('visible'));
               
               <!-- Put chairs in closet -->
               chair1.setAttribute('position', {x: 60.171, y: 0, z: 2.564});
@@ -101,29 +121,58 @@
               chair4.setAttribute('position', {x: 60.171, y: 1.2, z: 2.564});
               chair5.setAttribute('position', {x: 60.171, y: 1.6, z: 2.564});
               
+              <!-- Turn off lights -->
+              light_1_Actual.setAttribute('visible', 'false');
+              light_1_Show.setAttribute('visible', 'false');
+              light_2_Actual.setAttribute('visible', 'false');
+              light_2_Show.setAttribute('visible', 'false');
+              <!-- Open the door so fighters can leave -->
+              if(MainDoorOpen == false){
+                toggleMainDoor();
+              }
+              <!-- Open the closet doors so the chairs are seen in the closet -->
+              if(ClosetDoorOpen == false){
+                toggleClosetDoor();  
+              }
+              
               covidMode = 2;
             }
             else if(covidMode == 2){
+              <!-- Make fighters 1 and 2 invisible -->
+              fighter1.setAttribute('visible', !fighter1.getAttribute('visible'));
+              fighter2.setAttribute('visible', !fighter2.getAttribute('visible'));
+              
               <!-- Make fighter 3 and 4 active -->
               fighter3.setAttribute('visible', !fighter3.getAttribute('visible'));
               fighter4.setAttribute('visible', !fighter4.getAttribute('visible'));
               
               <!-- Turn on the dummys -->
-              dummy1.setAttribute('visible', !dummy1.getAttribute('visible'));
-              dummy2.setAttribute('visible', !dummy2.getAttribute('visible'));
-              dummy3.setAttribute('visible', !dummy3.getAttribute('visible'));
-              dummy4.setAttribute('visible', !dummy4.getAttribute('visible'));
+              toggleDummys();
               
-              <!-- Turn off the fighter leaving animations -->
-              fighter1_leave.setAttribute('visible', !fighter1_leave.getAttribute('visible'));
-              fighter2_leave.setAttribute('visible', !fighter2_leave.getAttribute('visible'));
+              <!-- Turn on lights -->
+              light_1_Actual.setAttribute('visible', 'true');
+              light_1_Show.setAttribute('visible', 'true');
+              light_2_Actual.setAttribute('visible', 'true');
+              light_2_Show.setAttribute('visible', 'true');
+              
+              <!-- Close the door indicating lockdown is over -->
+              if(MainDoorOpen == true){
+                toggleMainDoor();
+              }
+              <!-- Keep the closet doors open so the chairs are seen in the closet -->
+              if(ClosetDoorOpen == false){
+                toggleClosetDoor();  
+              }
               
               covidMode = 3;
             }
             else if(covidMode == 3){
-              <!-- Go back to normal -->
+              <!-- Go back to normal and change fighter 1 and 2 animation to fighting again -->
               fighter1.setAttribute('visible', !fighter1.getAttribute('visible'));
               fighter2.setAttribute('visible', !fighter2.getAttribute('visible'));
+              fighter1.setAttribute('rotation', {x: 0, y: 180, z: 0});
+              fighter1.setAttribute('animation-mixer', 'clip: ArmatureAction');
+              fighter2.setAttribute('animation-mixer', 'clip: ArmatureAction');
               
               <!-- Put Chairs out -->
               chair1.setAttribute('position', {x: 51.707, y: 0, z: -46.716});
@@ -132,12 +181,19 @@
               chair4.setAttribute('position', {x: 51.707, y: 0, z: -31.716});
               chair5.setAttribute('position', {x: 51.707, y: 0, z: -26.716});
               
-              <!-- Turn off the dummys -->
-              dummy1.setAttribute('visible', !dummy1.getAttribute('visible'));
-              dummy2.setAttribute('visible', !dummy2.getAttribute('visible'));
-              dummy3.setAttribute('visible', !dummy3.getAttribute('visible'));
-              dummy4.setAttribute('visible', !dummy4.getAttribute('visible'));
+              <!-- Turn on lights -->
+              light_1_Actual.setAttribute('visible', 'true');
+              light_1_Show.setAttribute('visible', 'true');
+              light_2_Actual.setAttribute('visible', 'true');
+              light_2_Show.setAttribute('visible', 'true');
               
+              <!-- Turn off the dummys -->
+              toggleDummys();
+              
+              <!-- Close the closet doors so the chairs are back outside and everything goes to normal -->
+              if(ClosetDoorOpen == true){
+                toggleClosetDoor();  
+              }
               covidMode = 1;
             }
           })
@@ -179,7 +235,6 @@
           <a-asset-item id="Mop" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FMop.glb?v=1601181410504"></a-asset-item>
           <a-asset-item id="LightSwitchModel" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FlightSwitch.glb?v=1601338209024"></a-asset-item>
           
-          <a-asset-item id="Fighter1_Scene1" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FFighter1_Scene1.glb?v=1601431143855"></a-asset-item>
           <a-asset-item id="FightersLeave" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FFighter_1Leaving.glb?v=1601529118536"></a-asset-item>
           <a-asset-item id="FighterMounted_Scene2" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FMountedFighter_Scene2.glb?v=1601435684714"></a-asset-item>
           <a-asset-item id="FighterOnGround_Scene2" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FOnGroundFighter_Scene2.glb?v=1601435688882"></a-asset-item>
@@ -390,10 +445,8 @@
       <!-- Light Switch Models -->
       <a-entity id="lightSwitchId" gltf-model="#LightSwitchModel" scale = "1 1 1" color = "red" position="31.242 4.207 12.292" rotation="0 300 0"></a-entity>
       <!-- Fighters -->
-      <a-entity id = "Fighter1" gltf-model="#Fighter1_Scene1" scale = ".65 .65 .65" position="-3.25 -0.268 -8.13" rotation="0 180 0" animation-mixer="clip: ArmatureAction;"></a-entity>      
-      <a-entity id = "Fighter2" gltf-model="#Fighter1_Scene1" scale = ".65 .65 .65" position="-3.25 -0.268 -1.053" rotation="0 0 0" animation-mixer="clip: ArmatureAction;"></a-entity>
-      <a-entity id = "Fighter1_Leave" gltf-model="#FightersLeave" scale = ".65 .65 .65" position="-3.25 -0.268 -8.13" rotation="0 0 0" animation-mixer="clip: Leave;"></a-entity>
-      <a-entity id = "Fighter2_Leave" gltf-model="#FightersLeave" scale = ".65 .65 .65" position="-3.25 -0.268 -1.053" rotation="0 0 0" animation-mixer="clip: Leave;"></a-entity>
+      <a-entity id = "Fighter1" gltf-model="#FightersLeave" scale = ".65 .65 .65" position="-3.25 -0.268 -8.13" rotation="0 180 0" animation-mixer="clip: ArmatureAction;"></a-entity>      
+      <a-entity id = "Fighter2" gltf-model="#FightersLeave" scale = ".65 .65 .65" position="-3.25 -0.268 -1.053" rotation="0 0 0" animation-mixer="clip: ArmatureAction;"></a-entity>
       <a-entity id = "Fighter3" gltf-model="#FighterMounted_Scene2" scale = ".65 .65 .65" position="33.24 -0.268 -36.95" rotation="0 0 0" animation-mixer="clip: ArmatureAction;"></a-entity>
       <a-entity id = "Fighter4" gltf-model="#FighterOnGround_Scene2" scale = ".65 .65 .65" position="33.24 -0.268 -36.95" rotation="0 0 0" animation-mixer="clip: Armature.001Action;"></a-entity>      
       
@@ -422,9 +475,9 @@
       <a-entity id = "Dummy4" gltf-model="#Dummy" scale = ".5 .5 .5" position="-8.586 .905 -9.68" rotation="0 90 0"></a-entity>
       
       <!-- Boxing Stuff -->
-      <a-entity gltf-model="#AnimatedTrainingDummy" scale = ".6 .6 .6" position="-11.804 0 20.003" rotation="0 135 0" animation-mixer="clip: Damaged_Big;"></a-entity>
-      <a-entity gltf-model="#TechPunchingBag" scale = "1 1 1" position="-11.764 0 34.45" rotation="0 180 0"></a-entity>
-      <a-entity gltf-model="#TechPunchingBag" scale = "1 1 1" position="-13.46251 0 29.69528" rotation="0 135 0"></a-entity>
+      <a-entity gltf-model="#AnimatedTrainingDummy" scale = ".6 .6 .6" position="-11.804 0 20.003" rotation="0 135 0" animation-mixer="clip: Damaged_Big;" sound="src: #PunchingSound; on: click"></a-entity>
+      <a-entity gltf-model="#TechPunchingBag" scale = "1 1 1" position="-11.764 0 34.45" rotation="0 180 0" sound="src: #PunchingSound; on: click"></a-entity>
+      <a-entity gltf-model="#TechPunchingBag" scale = "1 1 1" position="-13.46251 0 29.69528" rotation="0 135 0" sound="src: #PunchingSound; on: click"></a-entity>
       <a-entity gltf-model="#PunchingBagStand" scale = ".4 .4 .4" position="14.042 -1.268 29.063" rotation="0 90 0"></a-entity>
       <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="6.054 1.831 29.063" rotation="0 90 0" sound="src: #PunchingSound; on: click"></a-entity>
       <a-entity gltf-model="#PunchingBag" scale = "1.5 1.5 1.5" position="10.072 1.831 29.063" rotation="0 90 0" sound="src: #PunchingSound; on: click"></a-entity>
