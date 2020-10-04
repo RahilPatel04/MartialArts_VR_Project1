@@ -12,9 +12,6 @@
         init: function (){
           var lightSwitch = document.querySelector('#lightSwitchId');
           var light_1_Actual = document.querySelector('#MainLight_1_Actual');
-          var light_1_Show = document.querySelector('#MainLight_1_Show');
-          var light_2_Actual = document.querySelector('#MainLight_2_Actual');
-          var light_2_Show = document.querySelector('#MainLight_2_Show');
           
           var MainDoorVar = document.querySelector('#MainDoorId');
           var MainDoorOpen = false;
@@ -57,9 +54,6 @@
             <!-- Toggle lights -->
             <!-- Change the visible light state to what its not. This acts like a toggle of the lights -->
             light_1_Actual.setAttribute('visible', !light_1_Actual.getAttribute('visible'));
-            light_1_Show.setAttribute('visible', !light_1_Show.getAttribute('visible'));
-            light_2_Actual.setAttribute('visible', !light_2_Actual.getAttribute('visible'));
-            light_2_Show.setAttribute('visible', !light_2_Show.getAttribute('visible'));
           }
           
           function toggleMainDoor(){
@@ -136,9 +130,6 @@
               
               <!-- Turn off lights -->
               light_1_Actual.setAttribute('visible', 'false');
-              light_1_Show.setAttribute('visible', 'false');
-              light_2_Actual.setAttribute('visible', 'false');
-              light_2_Show.setAttribute('visible', 'false');
               
               <!-- Change the Covid Mode Text -->
               CovidModeTextVar.setAttribute('value', CovidMode2);
@@ -169,9 +160,6 @@
               
               <!-- Turn on lights -->
               light_1_Actual.setAttribute('visible', 'true');
-              light_1_Show.setAttribute('visible', 'true');
-              light_2_Actual.setAttribute('visible', 'true');
-              light_2_Show.setAttribute('visible', 'true');
               
               <!-- Change the Covid Mode Text -->
               CovidModeTextVar.setAttribute('value', CovidMode3);
@@ -206,9 +194,6 @@
               
               <!-- Turn on lights -->
               light_1_Actual.setAttribute('visible', 'true');
-              light_1_Show.setAttribute('visible', 'true');
-              light_2_Actual.setAttribute('visible', 'true');
-              light_2_Show.setAttribute('visible', 'true');
               
               <!-- Change the Covid Mode Text -->
               CovidModeTextVar.setAttribute('value', CovidMode1);
@@ -258,12 +243,12 @@
           <img id = "redMats" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601789934669">
           
           <a-asset-item id="roof" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Froof.glb?v=1601146370030"></a-asset-item>
-          <a-asset-item id="Light" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FLights.glb?v=1601163699154"></a-asset-item>
-          <a-asset-item id="Desk" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fdesk.glb?v=1601168018519"></a-asset-item>
+          <a-asset-item id="Light" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FLights.glb?v=1601832974875"></a-asset-item>
+          <a-asset-item id="Desk" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fdesk.glb?v=1601831136356"></a-asset-item>
           <a-asset-item id="WaterFountain" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FwaterFountain.glb?v=1601177705454"></a-asset-item>
-          <a-asset-item id="Computer" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FComputer.glb?v=1601179842172"></a-asset-item>
+          <a-asset-item id="Computer" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FComputer.glb?v=1601831618285"></a-asset-item>
           <a-asset-item id="Mop" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FMop.glb?v=1601181410504"></a-asset-item>
-          <a-asset-item id="LightSwitchModel" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FlightSwitch.glb?v=1601338209024"></a-asset-item>
+          <a-asset-item id="LightSwitchModel" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FlightSwitch.glb?v=1601831724552"></a-asset-item>
           
           <a-asset-item id="FightersLeave" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FFighter_1Leaving.glb?v=1601529118536"></a-asset-item>
           <a-asset-item id="FighterMounted_Scene2" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FMountedFighter_Scene2.glb?v=1601435684714"></a-asset-item>
@@ -291,19 +276,14 @@
           <audio id="CovidButtonPressedSound" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fskyclad_sound_emergency_alarm_siren_loop.mp3?v=1601531915393"></audio>
         
       </a-assets>     
-      <a-camera id = "camera" position="26.906 5 -2.408" wasd-controls="acceleration: 300" rotation="0 23.950 0" look-controls="pointerLockEnabled:  true" aframe-injected="" data-aframe-inspector-original-camera="">
+      <a-camera id = "camera" position="26.906 5 -2.408" wasd-controls="acceleration: 100" rotation="0 23.950 0" look-controls="pointerLockEnabled:  true" aframe-injected="" data-aframe-inspector-original-camera="">
         <a-cursor color="#ffba70" position="0 0 -1"></a-cursor>
       </a-camera>
  
       <a-plane src="#groundTexture" position="20.474 0 0" rotation="-90 0 0" height="120" width="100"></a-plane>
 
-      <a-light type="ambient" color="#445451"></a-light>
-      <a-light id="MainLight_1_Actual" type="point" intensity=".5" position="5.645 14 11.880"></a-light>
-      <a-light id="MainLight_1_Show" type="point" intensity="1" position="5.645  13.88062 11.880" light="intensity: 20; distance: 4.3"></a-light>
-      
-      <a-light id="MainLight_2_Actual" type="point" intensity=".5" position="42.481 14 -18.443"></a-light>
-      <a-light id="MainLight_2_Show" type="point" intensity="1" position="42.481  13.88062 -18.443" light="intensity: 20; distance: 4.3"></a-light>
-
+      <a-light type="ambient" color="#445451" light="color: #ffffff; intensity: 0.6"></a-light>
+      <a-light id="MainLight_1_Actual" type="point" intensity=".8" position="26.652 14.815 .396"></a-light>
       
       <!-- walls -->
           <!-- Right Wall (Shoes) -->
@@ -458,7 +438,7 @@
       <a-entity gltf-model="#Light" scale="2.3 2.3 2.3" position="42.481 17.183 -18.443" rotation="0 0 180"></a-entity>
       
       <!-- Desk -->
-      <a-entity gltf-model="#Desk" scale = "5 4.5 5" position="33.198 3.412 5.443" rotation="0 30 0"></a-entity>
+      <a-entity gltf-model="#Desk" scale = "5 4.5 5" position="32.439 .02 8.248" rotation="0 30 0"></a-entity>
           <!-- Computer -->
       <a-entity gltf-model="#Computer" scale = ".005 .005 .005" position="34.733 3.548 8.18" rotation="0 300 0"></a-entity>
           <!-- Covid Button -->
@@ -472,7 +452,7 @@
       <a-entity gltf-model="#Mop" scale = ".5 .5 .5" position="60.041 -.205 7.587" rotation="0 180 0"></a-entity>
       
       <!-- Light Switch Models -->
-      <a-entity id="lightSwitchId" gltf-model="#LightSwitchModel" scale = "1 1 1" color = "red" position="31.242 4.207 12.292" rotation="0 300 0"></a-entity>
+      <a-entity id="lightSwitchId" gltf-model="#LightSwitchModel" scale = "1 1 1" color = "red" position="31.402 5.129 12.886" rotation="0 300 0"></a-entity>
       <!-- Fighters -->
       <a-entity id = "Fighter1" gltf-model="#FightersLeave" scale = ".65 .65 .65" position="-3.25 -0.268 -8.13" rotation="0 180 0" animation-mixer="clip: ArmatureAction;"></a-entity>      
       <a-entity id = "Fighter2" gltf-model="#FightersLeave" scale = ".65 .65 .65" position="-3.25 -0.268 -1.053" rotation="0 0 0" animation-mixer="clip: ArmatureAction;"></a-entity>
