@@ -5,7 +5,8 @@
     <meta name="description" content="Textures - A-Frame School">
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@v6.1.1/dist/aframe-extras.min.js"></script>
-    <script>
+    <script src="https://rawgit.com/blairmacintyre/aframe-look-at-billboard-component/master/dist/aframe-look-at-billboard-component.min.js"></script>
+    <script>      
       <!-- Register an AFrame component to scene -->
       AFRAME.registerComponent('scene', {
         init: function (){
@@ -35,6 +36,14 @@
           var dummy2 = document.querySelector('#Dummy2');
           var dummy3 = document.querySelector('#Dummy3');
           var dummy4 = document.querySelector('#Dummy4');
+          var ChairTextVar = document.querySelector('#ChairText');
+          
+          <!-- Variables to Control and Display the Covid Mode Text -->
+          var CovidModeTextVar = document.querySelector('#CovidModeText');
+          var CovidMode1 = "Mode 1: Normal\n(Before Lockdown)";
+          var CovidMode2 = "Mode 2: During Lockdown\n(March 2020)";
+          var CovidMode3 = "Mode 3: Current Situation\n(After June/July 2020)";
+          
           
           <!-- Shut off the dummys initially -->
           dummy1.setAttribute('visible', !dummy1.getAttribute('visible'));
@@ -120,12 +129,18 @@
               chair3.setAttribute('position', {x: 60.171, y: 0.8, z: 2.564});
               chair4.setAttribute('position', {x: 60.171, y: 1.2, z: 2.564});
               chair5.setAttribute('position', {x: 60.171, y: 1.6, z: 2.564});
+              <!-- Make ChairText go invisible -->
+              ChairTextVar.setAttribute('visible', 'false');
               
               <!-- Turn off lights -->
               light_1_Actual.setAttribute('visible', 'false');
               light_1_Show.setAttribute('visible', 'false');
               light_2_Actual.setAttribute('visible', 'false');
               light_2_Show.setAttribute('visible', 'false');
+              
+              <!-- Change the Covid Mode Text -->
+              CovidModeTextVar.setAttribute('value', CovidMode2);
+              
               <!-- Open the door so fighters can leave -->
               if(MainDoorOpen == false){
                 toggleMainDoor();
@@ -155,6 +170,9 @@
               light_2_Actual.setAttribute('visible', 'true');
               light_2_Show.setAttribute('visible', 'true');
               
+              <!-- Change the Covid Mode Text -->
+              CovidModeTextVar.setAttribute('value', CovidMode3);
+              
               <!-- Close the door indicating lockdown is over -->
               if(MainDoorOpen == true){
                 toggleMainDoor();
@@ -180,12 +198,17 @@
               chair3.setAttribute('position', {x: 51.707, y: 0, z: -36.416});
               chair4.setAttribute('position', {x: 51.707, y: 0, z: -31.716});
               chair5.setAttribute('position', {x: 51.707, y: 0, z: -26.716});
+              <!-- Make ChairText go visible -->
+              ChairTextVar.setAttribute('visible', 'true');
               
               <!-- Turn on lights -->
               light_1_Actual.setAttribute('visible', 'true');
               light_1_Show.setAttribute('visible', 'true');
               light_2_Actual.setAttribute('visible', 'true');
               light_2_Show.setAttribute('visible', 'true');
+              
+              <!-- Change the Covid Mode Text -->
+              CovidModeTextVar.setAttribute('value', CovidMode1);
               
               <!-- Turn off the dummys -->
               toggleDummys();
@@ -261,7 +284,7 @@
           <audio id="CovidButtonPressedSound" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fskyclad_sound_emergency_alarm_siren_loop.mp3?v=1601531915393"></audio>
         
       </a-assets>     
-      <a-camera id = "camera" position="26.906 5 -2.408" wasd-controls="acceleration: 500" rotation="" look-controls="" aframe-injected="" data-aframe-inspector-original-camera="">
+      <a-camera id = "camera" position="26.906 5 -2.408" wasd-controls="acceleration: 200" rotation="" look-controls="" aframe-injected="" data-aframe-inspector-original-camera="">
         <a-cursor color="#ffba70" position="0 0 -1"></a-cursor>
       </a-camera>
       <a-sky src="#skyTexture"></a-sky>
@@ -320,7 +343,7 @@
           <!-- Right Wall by red mats -->
       <a-box src="#bottomWallTexture" position="57.16 1.115 -26.14" rotation="0 90 0" height="8" width="54.66" geometry="height:2.23"></a-box>
       <a-box src="#middleWallTexture" position="57.16 2.35 -26.14" rotation="0 90 0" height="8" width="54.66" geometry="height:0.2400000000000001"></a-box>
-      <a-box src="#topWallTexture_2" position="57.16 9.97  -26.14" rotation="0 90 0" height="15" width="54.66" ></a-box>
+      <a-box src="#topWallTexture_4" position="57.16 9.97  -26.14" rotation="0 90 0" height="15" width="54.66" ></a-box>
           <!-- Right closet wall -->
       <a-box src="#bottomWallTexture" position="57.16 1.115 17.693" rotation="0 90 0" height="8" width="23.19" geometry="height:2.23"></a-box>
       <a-box src="#middleWallTexture" position="57.16 2.35 17.693" rotation="0 90 0" height="8" width="23.19" geometry="height:0.2400000000000001"></a-box>
@@ -469,10 +492,10 @@
       <a-entity teleport="4" id = "Chair5" gltf-model="#Chairs" scale = ".013 .013 .013" position="51.707 0 -26.716"></a-entity>     
       
       <!-- Training Dummys -->
-      <a-entity id = "Dummy1" gltf-model="#Dummy" scale = ".5 .5 .5" position="2.681 .905 2.281" rotation="0 90 0"></a-entity>
-      <a-entity id = "Dummy2" gltf-model="#Dummy" scale = ".5 .5 .5" position="-8.586 .905 2.281" rotation="0 90 0"></a-entity>
-      <a-entity id = "Dummy3" gltf-model="#Dummy" scale = ".5 .5 .5" position="2.681 .905 -9.68" rotation="0 90 0"></a-entity>
-      <a-entity id = "Dummy4" gltf-model="#Dummy" scale = ".5 .5 .5" position="-8.586 .905 -9.68" rotation="0 90 0"></a-entity>
+      <a-entity  id = "Dummy1" gltf-model="#Dummy" scale = ".5 .5 .5" position="2.681 .905 2.281" rotation="0 90 0"></a-entity>
+      <a-entity  id = "Dummy2" gltf-model="#Dummy" scale = ".5 .5 .5" position="-8.586 .905 2.281" rotation="0 90 0"></a-entity>
+      <a-entity  id = "Dummy3" gltf-model="#Dummy" scale = ".5 .5 .5" position="2.681 .905 -9.68" rotation="0 90 0"></a-entity>
+      <a-entity  id = "Dummy4" gltf-model="#Dummy" scale = ".5 .5 .5" position="-8.586 .905 -9.68" rotation="0 90 0"></a-entity>
       
       <!-- Boxing Stuff -->
       <a-entity gltf-model="#AnimatedTrainingDummy" scale = ".6 .6 .6" position="-11.804 0 20.003" rotation="0 135 0" animation-mixer="clip: Damaged_Big;" sound="src: #PunchingSound; on: click"></a-entity>
@@ -494,7 +517,17 @@
       <a-sphere teleport position="26.906 5 -2.408" radius=".25" color="#EF2D5E"></a-sphere>
       <a-sphere teleport position="43.579 5 9.5" radius=".25" color="#EF2D5E"></a-sphere>
       <a-sphere teleport position="1.028 5 20.2" radius=".25" color="#EF2D5E"></a-sphere>
-    
+      
+      <!-- Texts -->
+      <a-text value="Click The Punching Bags" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#55dff7" align="center" scale="4 4 4" position="-0.061 11.9 29.529" look-at="src: #camera"></a-text>
+      <a-text value="Click Light Switch to Toggle Lights" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#b7dbe1" align="center" scale="1 1 1" position="31.242 6 12.292" look-at="src: #camera"></a-text>
+      <a-text id = "ChairText" value="Click Chairs to\n Spectate" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#3e2d0e" align="center" scale="6 6 6" position="51.707 10.084 -36.716" look-at="src: #camera"></a-text>
+      <a-text value="Click to\n OPEN/CLOSE" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#02008a" align="center" scale="3 3 3" position="55 10.688 3.662" look-at="src: #camera"></a-text>
+      <a-text value="Click to\n OPEN/CLOSE" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#ffd48a" align="center" scale="3 3 3" position="24.325 10.297 36.241" look-at="src: #camera"></a-text>
+      <a-text value="Click Bench\n to Rest" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#ffd48a" align="center" scale="3 3 3" position="47.184 4 27.3" look-at="src: #camera"></a-text>
+      <a-text value="Click Button to\n Change Covid Mode" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#ff9c7a" align="center" scale="3 3 3" position="33.213 6 5.592" look-at="src: #camera"></a-text>
+      <a-text id = "CovidModeText" value="Mode 1: Normal\n(Before Lockdown)" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#7d94e8" align="center" scale="3 3 3" position="33.213 8 5.592" look-at="src: #camera"></a-text>
+
   </a-scene>
  </body>
 </html>s
