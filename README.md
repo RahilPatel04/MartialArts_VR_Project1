@@ -1,7 +1,7 @@
 # CS4331 VR Project 1: Covid-19 Martial Arts
 ## Project Description and Theme
 
-The objective of Project 1 was to make a VR enviornment that showed how Covid-19 and the lockdowns affected you. 
+Welocome to my Brazilian Jiu-Jitsu Gym, where I will be showing you how Covid-19 and the lockdown affected me.
 Covid-19 affected all of us in different ways and some aspects of our lifestyles started to change.
 One of those changes, for me, was the closing down of Martial Arts gyms.
 6 weeks before lockdown happened in March 2020, I started doing Brazilian Jiu-Jitsu(BJJ) at the Texas Tech Rec Center. 
@@ -27,11 +27,8 @@ I imported all the closet doors and main door 3d models from online as well.
 However, I did make the lights in blender.
 To give the effect that there the light models are emmitting light, I used two point lights for each light model.
 One point light was at a higher intensity, giving the effect that the light model was emmitting light while another point light was at a lower intensity but with a greater distance, thus lighitng up the room with a less intensity.
-* The light models I made in Blender
+* The light models I made in Blender and they can be toggled ON/OFF by the light switch near the help desk.
 ![Light Model in Blender](https://raw.githubusercontent.com/RahilPatel04/MartialArts_VR_Project1/master/ReportDocuments/Images/LightsBlenderModel.PNG)
-![Light Model in Scene](https://raw.githubusercontent.com/RahilPatel04/MartialArts_VR_Project1/master/ReportDocuments/Images/Lights.PNG)
-* The lights can also be turned ON/OFF by clicking on the Light Switch on the wall
-![Light Switch](https://raw.githubusercontent.com/RahilPatel04/MartialArts_VR_Project1/master/ReportDocuments/Images/LightSwitch.PNG)
 
 The doors are interactable and open/close when the user clicks on them. To help out the user, there are texts about each door indicating this function.
 ![MainDoor](https://raw.githubusercontent.com/RahilPatel04/MartialArts_VR_Project1/master/ReportDocuments/Images/MainDoor.PNG)
@@ -58,6 +55,9 @@ I acccomplished this by adding the Aframe-look-at-billboard-component registry w
 * Here is a picture of the same texts presented in the previous picture above. However, I am standing at a differenct spot looking at them from a different angle and the texts still end up looking at me.
 I think this functionality will help the user and encourage them to click on the items.
 ![TextPic2](https://raw.githubusercontent.com/RahilPatel04/MartialArts_VR_Project1/master/ReportDocuments/Images/TextsPicture2.PNG)
+
+## BJJ and Covid-19
+
 
 ## Increasing Performance
 
