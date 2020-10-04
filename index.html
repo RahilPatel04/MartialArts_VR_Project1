@@ -37,6 +37,7 @@
           var dummy3 = document.querySelector('#Dummy3');
           var dummy4 = document.querySelector('#Dummy4');
           var ChairTextVar = document.querySelector('#ChairText');
+          var trainingDummyTextVar = document.querySelector('#trainingDummyText');
           
           <!-- Variables to Control and Display the Covid Mode Text -->
           var CovidModeTextVar = document.querySelector('#CovidModeText');
@@ -45,11 +46,12 @@
           var CovidMode3 = "Mode 3: Current Situation\n(After June/July 2020)";
           
           
-          <!-- Shut off the dummys initially -->
+          <!-- Shut off the dummys and its text initially -->
           dummy1.setAttribute('visible', !dummy1.getAttribute('visible'));
           dummy2.setAttribute('visible', !dummy2.getAttribute('visible'));
           dummy3.setAttribute('visible', !dummy3.getAttribute('visible'));
           dummy4.setAttribute('visible', !dummy4.getAttribute('visible'));
+          trainingDummyTextVar.setAttribute('visible', !trainingDummyTextVar.getAttribute('visible'));
           
           function toggleLights(){
             <!-- Toggle lights -->
@@ -161,8 +163,9 @@
               fighter3.setAttribute('visible', !fighter3.getAttribute('visible'));
               fighter4.setAttribute('visible', !fighter4.getAttribute('visible'));
               
-              <!-- Turn on the dummys -->
+              <!-- Turn on the dummys and their user text-->
               toggleDummys();
+              trainingDummyTextVar.setAttribute('visible', !trainingDummyTextVar.getAttribute('visible'));
               
               <!-- Turn on lights -->
               light_1_Actual.setAttribute('visible', 'true');
@@ -210,8 +213,9 @@
               <!-- Change the Covid Mode Text -->
               CovidModeTextVar.setAttribute('value', CovidMode1);
               
-              <!-- Turn off the dummys -->
+              <!-- Turn off the dummys and their user text-->
               toggleDummys();
+              trainingDummyTextVar.setAttribute('visible', !trainingDummyTextVar.getAttribute('visible'));
               
               <!-- Close the closet doors so the chairs are back outside and everything goes to normal -->
               if(ClosetDoorOpen == true){
@@ -238,17 +242,20 @@
     </script>
   </head>
   <body>
-    <a-scene scene>
+    <a-scene scene background="color: black">
       <a-assets>
-          <img id="skyTexture" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
-          <img id="groundTexture" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fconcrete_floor_painted_disp_4k.jpg?v=1600920164936">
-          <img id="bottomWallTexture" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwhite_plaster_03_diff_4k.jpg?v=1600811220244">
-          <img id="topWallTexture" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955349.jpg?v=1601175526310">
-          <img id="topWallTexture_2" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955347-bjj-wallpapers.jpg?v=1601175855606">
-          <img id="topWallTexture_3" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955345-bjj-wallpapers.jpg?v=1601176197209">
-          <img id="topWallTexture_4" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955388-bjj-wallpapers.jpg?v=1601176388364">
-          <img id="topWallTexture_5" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955433-bjj-wallpapers.jpg?v=1601176606742">
-          <img id="middleWallTexture" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwhite_plaster_03_disp_4k.jpg?v=1600811210546">
+          <img id="groundTexture" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fconcrete_floor_painted_disp_1k.jpg?v=1601791450839">
+          <img id="bottomWallTexture" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwhite_plaster_03_diff_1k.jpg?v=1601791288282">
+          <img id="topWallTexture" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955349.jpg?v=1601788754221">
+          <img id="topWallTexture_2" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955347-bjj-wallpapers.jpg?v=1601789058463">
+          <img id="topWallTexture_3" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955345-bjj-wallpapers.jpg?v=1601789177009">
+          <img id="topWallTexture_4" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955388-bjj-wallpapers.jpg?v=1601789264872">
+          <img id="topWallTexture_5" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwp1955433-bjj-wallpapers.jpg?v=1601788912619">
+          <img id="middleWallTexture" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fwhite_plaster_03_disp_1k.jpg?v=1601791318249">
+          <img id = "blueMatsLogo" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fbjj_slogan.jpg?v=1601788066970">
+          <img id = "blueMats" src = "https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1601788241606">
+          <img id = "redMatsLogo" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FRedTechLogo.jpg?v=1601790115798">
+          <img id = "redMats" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601789934669">
           
           <a-asset-item id="roof" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Froof.glb?v=1601146370030"></a-asset-item>
           <a-asset-item id="Light" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FLights.glb?v=1601163699154"></a-asset-item>
@@ -284,12 +291,11 @@
           <audio id="CovidButtonPressedSound" src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fskyclad_sound_emergency_alarm_siren_loop.mp3?v=1601531915393"></audio>
         
       </a-assets>     
-      <a-camera id = "camera" position="26.906 5 -2.408" wasd-controls="acceleration: 200" rotation="" look-controls="" aframe-injected="" data-aframe-inspector-original-camera="">
+      <a-camera id = "camera" position="26.906 5 -2.408" wasd-controls="acceleration: 300" rotation="0 23.950 0" look-controls="pointerLockEnabled:  true" aframe-injected="" data-aframe-inspector-original-camera="">
         <a-cursor color="#ffba70" position="0 0 -1"></a-cursor>
       </a-camera>
-      <a-sky src="#skyTexture"></a-sky>
  
-      <a-plane src="#groundTexture" rotation="-90 0 0" height="200" width="200"></a-plane>
+      <a-plane src="#groundTexture" position="20.474 0 0" rotation="-90 0 0" height="120" width="100"></a-plane>
 
       <a-light type="ambient" color="#445451"></a-light>
       <a-light id="MainLight_1_Actual" type="point" intensity=".5" position="5.645 14 11.880"></a-light>
@@ -366,76 +372,76 @@
       <a-box src="#topWallTexture" position="43.579 13.339 9.5" rotation="0 0 0" height="8.440" width="4.842" ></a-box>
       
       <!-- Fighting Matt; in horizontal pattern -->
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fbjj_slogan.jpg?v=1600923254336" material="" geometry="height: 0.4; depth: 6; width: 6" position="0 0.2 0"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="6.25 0.2 0"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-6.25 0.2 0"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-12.5 0.2 0"></a-box>
+      <a-box src="#blueMatsLogo" material="" geometry="height: 0.4; depth: 6; width: 6" position="0 0.2 0"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="6.25 0.2 0"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="-6.25 0.2 0"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="-12.5 0.2 0"></a-box>
       
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="0 0.2 6.25"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="6.25 0.2 6.25"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-6.25 0.2 6.25"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-12.5 0.2 6.25"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="0 0.2 6.25"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="6.25 0.2 6.25"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="-6.25 0.2 6.25"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="-12.5 0.2 6.25"></a-box>
       
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="0 0.2 -6.25"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="6.25 0.2 -6.25"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fbjj_slogan.jpg?v=1600923254336" material="" geometry="height: 0.4; depth: 6; width: 6" position="-6.25 0.2 -6.25"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-12.5 0.2 -6.25"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="0 0.2 -6.25"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="6.25 0.2 -6.25"></a-box>
+      <a-box src="#blueMatsLogo" material="" geometry="height: 0.4; depth: 6; width: 6" position="-6.25 0.2 -6.25"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="-12.5 0.2 -6.25"></a-box>
       
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="0 0.2 -12.5"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="6.25 0.2 -12.5"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-6.25 0.2 -12.5"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 6; width: 6" position="-12.5 0.2 -12.5"></a-box>       
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="0 0.2 -12.5"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="6.25 0.2 -12.5"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="-6.25 0.2 -12.5"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="-12.5 0.2 -12.5"></a-box>       
       
           <!-- Between Mats -->
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="-3.125 0.1 -3.125"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position=" 3.125 0.1 -3.125"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position=" -9.375 0.1 -3.125"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="-3.125 0.1 -3.125"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position=" 3.125 0.1 -3.125"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position=" -9.375 0.1 -3.125"></a-box>
       
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="-3.125 0.1 3.125" rotation="0 90 0"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="-3.125 0.1 -3.125" rotation="0 90 0"></a-box> 
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="-3.125 0.1 -9.375" rotation="0 90 0"></a-box> 
+      <a-box src="#blueMats" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="-3.125 0.1 3.125" rotation="0 90 0"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="-3.125 0.1 -3.125" rotation="0 90 0"></a-box> 
+      <a-box src="#blueMats" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="-3.125 0.1 -9.375" rotation="0 90 0"></a-box> 
           <!-- Mats on Walls -->
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 24.75; width: 4" position="-15.625 2 -3.125" rotation="0 0 90"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2Fmats.jpg?v=1600924455193" material="" geometry="height: 0.4; depth: 24.75; width: 4" position="-3.125 2 -15.625" rotation="0 90 90"></a-box>    
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 24.75; width: 4" position="-15.625 2 -3.125" rotation="0 0 90"></a-box>
+      <a-box src="#blueMats" material="" geometry="height: 0.4; depth: 24.75; width: 4" position="-3.125 2 -15.625" rotation="0 90 90"></a-box>    
       
       <!-- Second Fighting Matt -->
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -49.45"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -49.45"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -49.45"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -49.45"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -49.45"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -49.45"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -49.45"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -49.45"></a-box>
 
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -43.2"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FRedTechLogo.jpg?v=1601080959423" material="" rotation = "0 180 0" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -43.2"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FRedTechLogo.jpg?v=1601080959423" material="" rotation = "0 180 0" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -43.2"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -43.2"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -43.2"></a-box>
+      <a-box src="#redMatsLogo" material="" rotation = "0 180 0" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -43.2"></a-box>
+      <a-box src="#redMatsLogo" material="" rotation = "0 180 0" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -43.2"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -43.2"></a-box>
       
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -36.95"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FRedTechLogo.jpg?v=1601080959423" material="" rotation = "0 270 0" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -36.95"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FRedTechLogo.jpg?v=1601080959423" material="" rotation = "0 90 0" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -36.95"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -36.95"></a-box>    
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -36.95"></a-box>
+      <a-box src="#redMatsLogo" material="" rotation = "0 270 0" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -36.95"></a-box>
+      <a-box src="#redMatsLogo" material="" rotation = "0 90 0" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -36.95"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -36.95"></a-box>    
  
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -30.7"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FRedTechLogo.jpg?v=1601080959423" material="" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -30.7"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FRedTechLogo.jpg?v=1601080959423" material="" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -30.7"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -30.7"></a-box>   
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -30.7"></a-box>
+      <a-box src="#redMatsLogo" material="" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -30.7"></a-box>
+      <a-box src="#redMatsLogo" material="" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -30.7"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -30.7"></a-box>   
       
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -24.45"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -24.45"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -24.45"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -24.45"></a-box>   
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="26.99 0.2 -24.45"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="33.24 0.2 -24.45"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="39.49 0.2 -24.45"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 6; width: 6" position="45.74 0.2 -24.45"></a-box>   
       
           <!-- Between Mats -->
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 31; width: 0.25" position="30.115 0.1 -36.95"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 31; width: 0.25" position="36.365 0.1 -36.95"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 31; width: 0.25" position="42.615 0.1 -36.95"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="36.365 0.1 -33.825" rotation="0 90 0"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="36.365 0.1 -27.575" rotation="0 90 0"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="36.365 0.1 -40.075" rotation="0 90 0"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="36.365 0.1 -46.325" rotation="0 90 0"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.2; depth: 31; width: 0.25" position="30.115 0.1 -36.95"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.2; depth: 31; width: 0.25" position="36.365 0.1 -36.95"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.2; depth: 31; width: 0.25" position="42.615 0.1 -36.95"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="36.365 0.1 -33.825" rotation="0 90 0"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="36.365 0.1 -27.575" rotation="0 90 0"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="36.365 0.1 -40.075" rotation="0 90 0"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.2; depth: 24.75; width: 0.25" position="36.365 0.1 -46.325" rotation="0 90 0"></a-box>
 
           <!-- Mats on Wall -->
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 31; width: 4" position="23.865 2 -36.95" rotation="0 0 90"></a-box>
-      <a-box src="https://cdn.glitch.com/24c6a771-7975-4a5e-b8c8-333437f21e79%2FredMat.jpg?v=1601080653350" material="" geometry="height: 0.4; depth: 24.75; width: 4" position="36.365 2 -52.575" rotation="0 90 90"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 31; width: 4" position="23.865 2 -36.95" rotation="0 0 90"></a-box>
+      <a-box src="#redMats" material="" geometry="height: 0.4; depth: 24.75; width: 4" position="36.365 2 -52.575" rotation="0 90 90"></a-box>
       
       <!-- Roof Models -->
       <a-entity gltf-model="#roof" scale=".02 .01 .15" position="58.719 14.985 -14.688"></a-entity>
@@ -471,7 +477,7 @@
       <a-entity id = "Fighter1" gltf-model="#FightersLeave" scale = ".65 .65 .65" position="-3.25 -0.268 -8.13" rotation="0 180 0" animation-mixer="clip: ArmatureAction;"></a-entity>      
       <a-entity id = "Fighter2" gltf-model="#FightersLeave" scale = ".65 .65 .65" position="-3.25 -0.268 -1.053" rotation="0 0 0" animation-mixer="clip: ArmatureAction;"></a-entity>
       <a-entity id = "Fighter3" gltf-model="#FighterMounted_Scene2" scale = ".65 .65 .65" position="33.24 -0.268 -36.95" rotation="0 0 0" animation-mixer="clip: ArmatureAction;"></a-entity>
-      <a-entity id = "Fighter4" gltf-model="#FighterOnGround_Scene2" scale = ".65 .65 .65" position="33.24 -0.268 -36.95" rotation="0 0 0" animation-mixer="clip: Armature.001Action;"></a-entity>      
+      <a-entity id = "Fighter4" gltf-model="#FighterOnGround_Scene2" scale = ".65 .65 .65" position="33.24 -0.268 -36.95" rotation="0 0 0" animation-mixer="clip: Armature.001Action;"></a-entity>  
       
       <!-- Main Door Models-->
       <a-entity gltf-model="#MainDoorFrame" scale = ".03 .028 .03" position="24.325 5.293 37.874" rotation="0 0 0"></a-entity>
@@ -480,7 +486,7 @@
       <!-- Closet Door -->
       <a-entity id = "ClosetDoorId" gltf-model="#MainDoor" scale = ".03 .028 .03" position="56.526 4.511 3.662" rotation="0 -90 0"></a-entity>
       
-      <!-- Locker Room-->
+      <!-- Locker Room -->
       <a-entity gltf-model="#Lockers" scale = "11.5 11.5 11.5" position="56.088 2.871 19.485" rotation="0 270 0"></a-entity>
       <a-entity teleport="4.5" id = "BenchesId" gltf-model="#Benches" scale = ".00004 .00004 .00004" position="47.184 0 25.889" rotation="0 10 0"></a-entity>
       
@@ -514,9 +520,9 @@
       <a-entity gltf-model="#Shoes3" scale = ".07 .07 .07" position="32.419 2.349 18.322" rotation="0 0 0"></a-entity>
       
       <!-- spheres that will help with teleporting around -->
-      <a-sphere teleport position="26.906 5 -2.408" radius=".25" color="#EF2D5E"></a-sphere>
-      <a-sphere teleport position="43.579 5 9.5" radius=".25" color="#EF2D5E"></a-sphere>
-      <a-sphere teleport position="1.028 5 20.2" radius=".25" color="#EF2D5E"></a-sphere>
+      <a-sphere teleport position="26.906 5 -2.408" radius=".5" color="#EF2D5E"></a-sphere>
+      <a-sphere teleport position="43.579 5 9.5" radius=".5" color="#EF2D5E"></a-sphere>
+      <a-sphere teleport position="1.028 5 20.2" radius=".5" color="#EF2D5E"></a-sphere>
       
       <!-- Texts -->
       <a-text value="Click The Punching Bags" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#55dff7" align="center" scale="4 4 4" position="-0.061 11.9 29.529" look-at="src: #camera"></a-text>
@@ -527,7 +533,9 @@
       <a-text value="Click Bench\n to Rest" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#ffd48a" align="center" scale="3 3 3" position="47.184 4 27.3" look-at="src: #camera"></a-text>
       <a-text value="Click Button to\n Change Covid Mode" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#ff9c7a" align="center" scale="3 3 3" position="33.213 6 5.592" look-at="src: #camera"></a-text>
       <a-text id = "CovidModeText" value="Mode 1: Normal\n(Before Lockdown)" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#7d94e8" align="center" scale="3 3 3" position="33.213 8 5.592" look-at="src: #camera"></a-text>
+      <a-text id = "teleportInfo" value="Click on the Purple Spheres\n to Teleport" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#EF2D5E" align="center" scale="3 3 3" position="20.909 6.59 -16.174" rotation="0 30 0" look-at="src: #camera"></a-text>
+      <a-text id = "trainingDummyText" value="Training Dummys" font="https://cdn.aframe.io/fonts/mozillavr.fnt" color="#b3ff9e" align="center" scale="3 3 3" position="0 6.59 -3.25" rotation="0 30 0" look-at="src: #camera"></a-text>
 
-  </a-scene>
+    </a-scene>
  </body>
 </html>s
