@@ -1,9 +1,17 @@
-# A-Frame Project
+# CS4331 VR Project 1: Covid-19 Martial Arts
+## Project Description and Theme
 
-**[Subscribe to the A-Frame newsletter!](https://aframe.io/subscribe/)**
+The objective of Project 1 was to make a VR enviornment that showed how Covid-19 and the lockdowns affected you. 
+Covid-19 affected all of us in different ways and some aspects of our lifestyles started to change.
+One of those changes, for me, was the closing down of Martial Arts gyms.
+6 weeks before lockdown happened in March 2020, I started doing Brazilian Jiu-Jitsu(BJJ) at the Texas Tech Rec Center. 
+During the lockdowns, the Jiu-Jitsu club at Tech and all Martial Arts gyms around the world shut down. 
+Therefore, through a Virtual Environment setting, I would like to show everyone how Covid-19 affect Martial Arts gyms. 
 
-Built with [A-Frame](https://aframe.io), a web framework for building virtual reality experiences.
+## The Environment
 
-Make WebVR with HTML and Entity-Component. Works on Vive, Rift, Quest, desktop, mobile platforms.
+I started by building the walls of my Martial Arts Gym and incorporated BJJ wall papers. 
+The floor is a simple plane object and the roof is an a 3d model that I found online.
 
-Click and drag on desktop. Open it on a smartphone and use the device motion sensors. Or [plug in a VR headset](https://aframe.io/docs/0.8.0/introduction/vr-headsets-and-webvr-browsers.html)!
+
+
