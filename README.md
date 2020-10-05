@@ -1,7 +1,12 @@
 # CS4331 VR Project 1: Covid-19 Martial Arts
+Project Demo: <https://covid19-martialarts.glitch.me/>
+
+Click Below to See My Youtube Video:
+[![Youtube Link](https://github.com/RahilPatel04/MartialArts_VR_Project1/raw/master/ReportDocuments/Images/InsideBuilding.PNG)](https://youtu.be/hQ8QA7La-dA)
+
 ## Project Description and Theme
 
-Welocome to my Brazilian Jiu-Jitsu Gym, where I will be showing you how Covid-19 and the lockdown affected me.
+Welcome to my Brazilian Jiu-Jitsu Gym, where I will be showing you how Covid-19 and the lockdown affected me.
 Covid-19 affected all of us in different ways and some aspects of our lifestyles started to change.
 One of those changes, for me, was the closing down of Martial Arts gyms.
 6 weeks before lockdown happened in March 2020, I started doing Brazilian Jiu-Jitsu(BJJ) at the Texas Tech Rec Center. 
@@ -17,7 +22,7 @@ The floor is a simple plane object and the roof is an a 3d model that I found on
 ![Outside Building Pic](https://raw.githubusercontent.com/RahilPatel04/MartialArts_VR_Project1/master/ReportDocuments/Images/OutsideBuildingPic.PNG)
 
 I made the walls using 3 different Cubes so each wall is different cubes. That allowed me to give each vertical part of the wall a different texture.
-Doing different textures with so many pictures on each wall did come with a downside, which is the decrease in performance and occasionally causing lag. I will later explaing what I did to increase performance in the performance header.
+Doing different textures with so many pictures on each wall did come with a downside, which is the decrease in performance and occasionally causing lag. I will later explain what I did to increase performance in the performance header.
 * Here is a picture of the inside of my building and what are the different wallpapers I used to make it seem like a BJJ gym.
 
 ![Inside Building Pic](https://github.com/RahilPatel04/MartialArts_VR_Project1/raw/master/ReportDocuments/Images/InsideBuilding.PNG)
@@ -27,7 +32,7 @@ The building contains doors for access and multiple lights that give the environ
 I imported all the closet doors and main door 3d models from online as well. 
 
 However, I did make the lights in blender.
-To give the effect that there the light models are emmitting light, I only used one point light positioned in the middle. 
+To give the effect that there the light models are emitting light, I only used one point light positioned in the middle. 
 I also used an ambient light to give just a little bit of light when the light switch is toggled and the point light turns off.
 * The light models I made in Blender and they can be toggled ON/OFF by the light switch near the help desk.
 
@@ -62,18 +67,18 @@ function toggleMainDoor(){
 ![Lights and Door Gif](https://media.giphy.com/media/Xxizchdx3kLfF0IeqM/giphy.gif)
 
 ## Navigating the Room
-To help the User navigate the room, I incorporated teleportion, for VR use without keyboard, and the WASD keys.
+To help the User navigate the room, I incorporated teleportation, for VR use without keyboard, and the WASD keys.
 To use teleportation, the user has to click on the purple spheres presented across the room. The position of the camera changes to the sphere upon clicking.
 * There are total three purple spheres, presented in the gif, in the VR environment to help the user navigate.
-I choose to implement these spheres to help out the mobile users and also to limit lag, caused by the user moving with WASD keys.
+I choose to implement these spheres to help the mobile users and to limit lag, caused by the user moving with WASD keys.
 
 ![Teleporting Spheres Gif](https://media.giphy.com/media/Dw9CWzdzYlUowPE7Mj/giphy.gif)
 
 ## Texts to Help Understand the VR Environment
-In order for users to get the full immersive experience from my VR environment, I have incorporated texts to display the functionalities.
+For users to get the full immersive experience from my VR environment, I have incorporated texts to display the functionalities.
 These texts are display everywhere where the user can interact with the environment.
 * One important function that I wanted to add was that the text should always be facing the User. 
-I acccomplished this by adding the Aframe-look-at-billboard-component registry which added to my script. Then I used the look-at="" tag on my text object and pointed that to my camera object: look-at="#camera". 
+I accomplished this by adding the Aframe-look-at-billboard-component registry which added to my script. Then I used the look-at="" tag on my text object and pointed that to my camera object: look-at="#camera". 
 ```html
 <script src="https://rawgit.com/blairmacintyre/aframe-look-at-billboard-component/master/dist/aframe-look-at-billboard-component.min.js"></script>
 
@@ -88,14 +93,14 @@ I think this functionality will help the user and encourage them to click on the
 Due to the Lockdowns and Covid-19, BJJ gyms were shut down and then opened back up in June/July.
 To represent that experience, I implemented a Covid-19 Toggle button, that is located on the help desk, with the appropriate texts above it describing what Covid-19 mode the user is in.
 ### Covid-19 Toggle Button
-There are three modes that represent the stages(Modes) that BJJ gyms went through: Mode 1(Normal), Mode 2(Lockdowns), and Mode 3(Current Situtation).
+There are three modes that represent the stages(Modes) that BJJ gyms went through: Mode 1(Normal), Mode 2(Lockdowns), and Mode 3(Current Situation).
 * Picture of the Covid-19 Button that we will use to toggle Covid mode. The Covid button is controlled by an event that is handled in three.JS.
 When the button changes mode, certain objects either turn invisible/visible, change animation clips, or change positions. These will be later explained in the headers below.
 
 ![Covid-19 Button Pic](https://raw.githubusercontent.com/RahilPatel04/MartialArts_VR_Project1/master/ReportDocuments/Images/CovidButtonPic.PNG)
 ### Mode 1: Normal
 Mode 1: Normal. This is what BJJ gyms where like in January/February. This is also the default setting that the User spawns in the environment with.
-There are some objects in this default scene that potrays the theme of what BJJ was before the lockdowns. 
+There are some objects in this default scene that portrays the theme of what BJJ was before the lockdowns. 
 #### The BJJ Fighter Models
 * I made one fighting character model in blender using low poly items like cubes and spheres.
 
@@ -107,7 +112,7 @@ There are some objects in this default scene that potrays the theme of what BJJ 
 
 ![Fighters with their animations](https://raw.githubusercontent.com/RahilPatel04/MartialArts_VR_Project1/master/ReportDocuments/Images/FighterFightingSequence.PNG)
 * I imported these fighters in AFrame and activated their animations. 
-The fight sequences for both of the fights were done independently in blender and I had to go through a lot of trail and error to make the animations correspond with one another.
+The fight sequences for both fights were done independently in blender and I had to go through a lot of trial and error to make the animations correspond with one another.
 
 ![Red Mat Fighters](https://media.giphy.com/media/v1sUHMhk1zEo7lY33m/giphy.gif)
 ![Blue Mat Fighters](https://media.giphy.com/media/El0fy8vw6zAmsi7mJH/giphy.gif)
@@ -149,13 +154,13 @@ Try clicking on the punching bags and punching sound effects will be heard.
 ### Mode 2: During Lockdown (March)
 The user can switch Modes by clicking on the Covid button. The text above the button will help the user with what mode they are on.
 Mode 2 is to represent during lockdown mode, where everybody left the gyms and the places were closed.
-To express this effect, I made another animation for the two fighters on the blue mat. When Mode 2 is initiazed, the two fighters will start animation 2, which is to leave the BJJ gym.
+To express this effect, I made another animation for the two fighters on the blue mat. When Mode 2 is initialized, the two fighters will start animation 2, which is to leave the BJJ gym.
 Additionally, the lights also get turned off and the fighters on the red mat are turn invisible. The chairs that were used for spectators are now placed, by changing their positions, in the closet since they won't be of use now. 
 
 ![FightersLeaving](https://media.giphy.com/media/F2ZDDEp51BlN0two1N/giphy.gif)
 * Code: this is part of the code that sums up on how I was able to change object/situations in the same scene. As you can see, if we are in mode 1 and the button is clicked, then initiate mode 2.
 These coding sequences are very crucial to my VR app since they control the different covid modes. 
-This piece of code represents the three ways I used to change the situtaion: turning objects invisible/visible, changing animation clips, and changing positions.
+This piece of code represents the three ways I used to change the situation: turning objects invisible/visible, changing animation clips, and changing positions.
 ```JS
             <!-- covidMode will toggle off between our scenes. 1 is normal, 2 is during covid, and 3 is after lockdowns(June, July, August)
             if(covidMode == 1){
@@ -195,9 +200,9 @@ This piece of code represents the three ways I used to change the situtaion: tur
             }
 ```
 ### Mode 3: After Lockdown(June/July 2020) - Current Situation
-Mode 3 is supposes to represent the current situation in which many Martial Arts/BJJ gyms are in now.
+Mode 3 is supposed to represent the current situation in which many Martial Arts/BJJ gyms are in now.
 During June/July 2020, depending on what state, gyms started to open up and some people went back to their BJJ gyms.
-However, there were some gyms that implemented training dummys that their students can train on instead of training with other students.
+However, there were some gyms that implemented training dummyies that their students can train on instead of training with other students.
 * This gif shows up the two scenarios that I mentioned and as you can also see that the chairs are still in the closet.
 Due to minimizing visitors as much, I assumed that there would be not spectators allowed in the gyms, just people who want to go do BJJ.
 The fighters on the red mat became visible and the fighters on the blue mat become invisible. On the blue mats, some training dummy become visible instead.
@@ -211,7 +216,7 @@ You can click the covid-19 button as much as you like and also interact with eve
 
 ## Issues Faced: Optimizing Performance
 One major issue that I faced was reaching 60 fps in my VR environment. 
-Unfortunately, I was only getting 45 fps so I had to reasearch some performance optimization techniques.
+Unfortunately, I was only getting 45 fps so I had to research some performance optimization techniques.
 I came across this webpage: [AFrame Best Practices Documentation](https://aframe.io/docs/1.0.0/introduction/best-practices.html)
 The implementations that I made were:
 * Resized my textures to powers of two(512X1024, 256X256, etc)
@@ -261,10 +266,11 @@ Thank you for reading my report and I hope you really enjoyed/learned from my VR
 ### Self Made 3d Models (Located in Assests folder):
 * Fighting Character Models (4 Same Models)
 * Covid Button
-* Training Dummy
+* Training Dummies
 * Tech Punching Bag
 * Lights on the Roof
 * All of the Fighting Animations
 * The Blue and the Red Mats
 * Walls
+* The Punching Bag Stand Frame (Orange Colored Frame that the Punching Bags Hang From)
 
